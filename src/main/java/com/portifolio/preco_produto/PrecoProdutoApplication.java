@@ -1,13 +1,13 @@
-package com.portifolio.preco_commoditie;
+package com.portifolio.preco_produto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PrecoCommoditieApplication {
+public class PrecoProdutoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PrecoCommoditieApplication.class, args);
+        SpringApplication.run(PrecoProdutoApplication.class, args);
     }
 
 }

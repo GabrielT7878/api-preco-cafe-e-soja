@@ -1,4 +1,4 @@
-package com.portifolio.preco_commoditie.model;
+package com.portifolio.preco_produto.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class PrecoSacaID implements Serializable {
 
-    private String commoditie;
+    private String produto;
     private String dataLastCheckout;
 
 }

@@ -1,10 +1,10 @@
-package com.portifolio.preco_commoditie.service;
+package com.portifolio.preco_produto.service;
 
-import com.portifolio.preco_commoditie.dto.PrecoSacaDTO;
-import com.portifolio.preco_commoditie.exception.WebScrapingException;
-import com.portifolio.preco_commoditie.model.PrecoSaca;
-import com.portifolio.preco_commoditie.model.PrecoSacaID;
-import com.portifolio.preco_commoditie.repository.PrecoSacaRepository;
+import com.portifolio.preco_produto.dto.PrecoSacaDTO;
+import com.portifolio.preco_produto.exception.WebScrapingException;
+import com.portifolio.preco_produto.model.PrecoSaca;
+import com.portifolio.preco_produto.model.PrecoSacaID;
+import com.portifolio.preco_produto.repository.PrecoSacaRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,18 +25,18 @@ public class PrecoSacaService {
         this.precoSacaRepository = precoSacaRepository;
     }
 
-    public PrecoSacaDTO obterPrecoSaca(String commoditie) {
+    public PrecoSacaDTO obterPrecoSaca(String produto) {
 
         LocalDate date = LocalDate.now();
-        precoSaca = precoSacaBD(date, commoditie);
+        precoSaca = precoSacaBD(date, produto);
 
         if (precoSaca == null) {
-            String urlBase = String.format("https://www.cepea.esalq.usp.br/br/indicador/%s.aspx", commoditie);
-            precoSaca = obterPrecoSacaWeb(urlBase, commoditie);
+            String urlBase = String.format("https://www.cepea.esalq.usp.br/br/indicador/%s.aspx", produto);
+            precoSaca = obterPrecoSacaWeb(urlBase, produto);
             precoSacaRepository.save(precoSaca);
         }
 
-        return new PrecoSacaDTO(precoSaca.getCommoditie(),
+        return new PrecoSacaDTO(precoSaca.getProduto(),
                 precoSaca.getData(),
                 precoSaca.getValorR$(),
                 precoSaca.getVariacaoDia(),
@@ -44,14 +44,14 @@ public class PrecoSacaService {
                 precoSaca.getValorU$$());
     }
 
-    private PrecoSaca obterPrecoSacaWeb(String urlBase, String commoditie) {
+    private PrecoSaca obterPrecoSacaWeb(String urlBase, String produto) {
         try {
             Document doc = Jsoup.connect(urlBase).get();
             Element coffe_table_price = doc.select("table").get(0);
             Elements coffe_info_price = coffe_table_price.select("tr");
 
             precoSaca = PrecoSaca.builder().
-                    commoditie(commoditie).
+                    produto(produto).
                     data(coffe_info_price.select("td").get(0).text()).
                     valorR$(NumberFormat.getInstance(Locale.GERMANY).parse(coffe_info_price.select("td").get(1).text()).doubleValue()).
                     variacaoDia(coffe_info_price.select("td").get(2).text()).

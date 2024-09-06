@@ -1,7 +1,7 @@
-package com.portifolio.preco_commoditie.controller;
+package com.portifolio.preco_produto.controller;
 
-import com.portifolio.preco_commoditie.dto.PrecoSacaDTO;
-import com.portifolio.preco_commoditie.service.PrecoSacaService;
+import com.portifolio.preco_produto.dto.PrecoSacaDTO;
+import com.portifolio.preco_produto.service.PrecoSacaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +18,8 @@ public class PrecoSacaController {
     }
 
     @GetMapping()
-    public ResponseEntity<PrecoSacaDTO> obterPrecoSaca(@RequestParam String commoditie){
-        PrecoSacaDTO precoSacaDTO = precoSacaService.obterPrecoSaca(commoditie);
+    public ResponseEntity<PrecoSacaDTO> obterPrecoSaca(@RequestParam String produto){
+        PrecoSacaDTO precoSacaDTO = precoSacaService.obterPrecoSaca(produto);
         return ResponseEntity.ok().body(precoSacaDTO);
     }
 

@@ -1,4 +1,4 @@
-package com.portifolio.preco_commoditie.model;
+package com.portifolio.preco_produto.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,7 +14,7 @@ import lombok.*;
 @IdClass(PrecoSacaID.class)
 public class PrecoSaca {
     @Id
-    private String commoditie;
+    private String produto;
     @Id
     private String dataLastCheckout;
     private String data;
