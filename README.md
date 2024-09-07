@@ -47,7 +47,7 @@ A api conta com um endpoint sendo obrigatório a passagem o parâmetro {produto}
 ## Exemplos de requisições e respostas
 
 
-##### <a id="signup"> =>  /preco?commoditie=cafe</a>
+##### <a id="signup"> =>  /preco?produto=cafe</a>
 ```json
 {
   "produto": "cafe",
@@ -59,7 +59,7 @@ A api conta com um endpoint sendo obrigatório a passagem o parâmetro {produto}
 }
 ```
 
-##### <a id="signup"> =>  /preco?commoditie=soja</a>
+##### <a id="signup"> =>  /preco?produto=soja</a>
 ```json
 {
   "produto": "soja",
